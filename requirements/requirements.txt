@@ -1,0 +1,4 @@
+ansible
+loguru
+tqdm
+python_dotenv

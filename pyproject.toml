@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "ansible_admin"
+version = "0.1.0"
+description = "a series of Ansible playbooks that I find I need on a regular basis"
+authors = ["charlie.rogers <charlie.rogers@fearnworks.com>"]
+license = "GNU General Public License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ansible = "^10.2.0"
+loguru = "^0.7.2"
+tqdm = "^4.66.4"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+poetry = "^1.8.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
