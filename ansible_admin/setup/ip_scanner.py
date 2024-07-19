@@ -1,6 +1,5 @@
 import ipaddress
 import subprocess
-import configparser
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 from ansible_admin.constants import START_IP, END_IP, OUTPUT_FILE
@@ -17,27 +16,26 @@ def scan_ip_range(start_ip, end_ip, output_file):
         ipaddress.IPv4Address(start_ip),
         ipaddress.IPv4Address(end_ip)
     ))
-    
+
     total_ips = sum(network.num_addresses for network in ip_range)
     active_hosts = []
-    
+
     with ThreadPoolExecutor(max_workers=100) as executor:
         futures = []
         for network in ip_range:
             futures.extend([executor.submit(ping, ip) for ip in network])
-        
+
         with tqdm(total=total_ips, desc="Scanning", unit="IP") as pbar:
             for future in as_completed(futures):
                 result = future.result()
                 if result:
                     active_hosts.append(result)
                 pbar.update(1)
-    
-    config = configparser.ConfigParser()
-    config['ActiveHosts'] = {f'host_{i}': ip for i, ip in enumerate(active_hosts, 1)}
-    
-    with open(output_file, 'w') as f:
-        config.write(f)
+
+    with open(output_file, "w") as f:
+        f.write("[ActiveHosts]\n")
+        for ip in active_hosts:
+            f.write(f"{ip}\n")
 
     print(f"\nScan complete. {len(active_hosts)} active hosts found and written to {output_file}")
 
