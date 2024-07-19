@@ -1,8 +1,10 @@
+import os
 import ipaddress
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 from ansible_admin.constants import START_IP, END_IP, OUTPUT_FILE
+
 
 def ping(ip):
     try:
@@ -12,6 +14,14 @@ def ping(ip):
         return None
 
 def scan_ip_range(start_ip, end_ip, output_file):
+    
+    # Create the directory if it doesn't exist
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+
+    # Create the file if it doesn't exist
+    if not os.path.exists(output_file):
+        open(output_file, "w").close()
+    
     ip_range = list(ipaddress.summarize_address_range(
         ipaddress.IPv4Address(start_ip),
         ipaddress.IPv4Address(end_ip)
