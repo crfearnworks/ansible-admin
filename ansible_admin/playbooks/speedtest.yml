@@ -1,0 +1,7 @@
+---
+- name: Run local speed test
+  hosts: localhost
+  gather_facts: yes
+
+  roles:
+    - speedtest

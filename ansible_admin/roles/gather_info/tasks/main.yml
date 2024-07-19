@@ -1,0 +1,18 @@
+---
+- name: Gather hardware information
+  ansible.builtin.setup:
+    gather_subset:
+      - 'hardware'
+      - 'network'
+      - 'virtual'
+
+- name: Save hardware information to a report
+  template:
+    src: report.j2
+    dest: /tmp/hardware_report.txt
+
+- name: Fetch the hardware report to the local machine
+  fetch:
+    src: /tmp/hardware_report.txt
+    dest: "{{ playbook_dir }}/../artifacts/{{ inventory_hostname }}_hardware_report.txt"
+    flat: yes

@@ -1,0 +1,10 @@
+---
+- name: Run Speedtest
+  command: speedtest-cli
+  register: output
+  changed_when: false
+
+- name: Save Speedtest output to a report
+  template:
+    src: report.j2
+    dest: "{{ playbook_dir }}/../artifacts/speedtest_report.txt"
