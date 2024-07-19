@@ -6,6 +6,17 @@
       - 'network'
       - 'virtual'
 
+- name: Gather facts on listening ports
+  community.general.listen_ports_facts:
+
+- name: List TCP ports
+  ansible.builtin.debug:
+    msg: "{{ ansible_facts.tcp_listen  | map(attribute='port') | sort | list }}"
+
+- name: List UDP ports
+  ansible.builtin.debug:
+    msg: "{{ ansible_facts.udp_listen | map(attribute='port') | sort | list }}"
+
 - name: Save hardware information to a report
   template:
     src: report.j2
