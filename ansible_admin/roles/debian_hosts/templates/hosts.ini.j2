@@ -1,0 +1,8 @@
+{{ hosts_ini_content['content'] | b64decode }}
+
+{% if debian_hosts | length > 0 %}
+[Debian]
+{% for host in debian_hosts %}
+{{ host }}
+{% endfor %}
+{% endif %}
