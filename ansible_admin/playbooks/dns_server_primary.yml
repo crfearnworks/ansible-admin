@@ -1,0 +1,8 @@
+---
+- name: Setup primary DNS server
+  hosts: dns_primary
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - dns_server_primary
