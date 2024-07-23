@@ -19,13 +19,23 @@
   # https://www.captainark.net/2016/01/31/debian-updates-with-ansible/
   shell: needrestart -blrl | awk '/^NEEDRESTART-SVC/{print $2}'
   register: needrestart
-  changed_when: no
+  changed_when: false
 
 - name: show services that need to be restarted
   debug:
-    msg: 'Need to restart these services: {{ needrestart.stdout_lines|join(", ") }}'
+    msg: 'Need to restart these services: {{ needrestart.stdout_lines|join("\n") }}'
   when: needrestart.stdout_lines|length > 0
-  changed_when: yes
+  changed_when: true
+
+- name: Set the fact of the list of services that need to be restarted
+  set_fact:
+    services_to_restart: "{{ needrestart.stdout_lines | join('\n') }}"
+  when: needrestart.stdout_lines | length > 0
+
+- name: Create empty fact if no services need to be restarted
+  set_fact:
+    services_to_restart: "none"
+  when: needrestart.stdout_lines | length == 0
 
 - name: check if reboot is required
   stat:

@@ -10,4 +10,5 @@ System:
     Virtualization Type: {{ ansible_virtualization_type }}
     Hostname: {{ ansible_hostname }}
     FQDN: {{ ansible_fqdn }}
-    Reboot Required: {{ upgrade_requires_reboot }}
+    Reboot Required: {{ upgrade_requires_reboot }}    
+    Services to restart: {{ services_to_restart }}
