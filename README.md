@@ -15,7 +15,9 @@ ansible-playbook ./playbooks/<yml file>
 
 ## Playbooks
 - `gather_hardware_info.yml`: Collects various facts about the devices on a network and saves them as text files in the artifacts folder.
+- `debian_hosts.yml`: Sorts through hosts.ini file and creates a group for Debian systems.
 - `speedtest.yml`: Runs a speedtest on the local machine and saves the report in the artifacts folder.
+- `debian_upgrades.yml`: Updates the targeted system(s) and saves a report with an indication if the server must be rebooted.
 
 ## Notes
 The branch names are going in order on the Chrono Trigger soundtrack. Because you need to have a little fun in your coding.
