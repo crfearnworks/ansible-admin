@@ -1,0 +1,13 @@
+Hardware Information Report
+===========================
+Date and Time: {{ ansible_date_time.date }} {{ ansible_date_time.time }}
+System:
+    Architecture: {{ ansible_architecture }}
+    Family: {{ ansible_os_family }}
+    Distribution: {{ ansible_distribution }} {{ ansible_distribution_version }}
+    Package Manager: {{ ansible_pkg_mgr }}
+    Virtualization Role: {{ ansible_virtualization_role }}
+    Virtualization Type: {{ ansible_virtualization_type }}
+    Hostname: {{ ansible_hostname }}
+    FQDN: {{ ansible_fqdn }}
+    Reboot Required: {{ upgrade_requires_reboot }}

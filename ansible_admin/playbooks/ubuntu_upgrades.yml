@@ -1,0 +1,8 @@
+---
+- name: Update and upgrade Ubuntu hosts without restart
+  hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - ubuntu_upgrades
