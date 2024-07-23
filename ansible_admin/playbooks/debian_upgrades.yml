@@ -1,0 +1,8 @@
+---
+- name: Update and upgrade Debian hosts without restart
+  hosts: Debian
+  become: true
+  gather_facts: true
+
+  roles:
+    - debian_upgrades 
