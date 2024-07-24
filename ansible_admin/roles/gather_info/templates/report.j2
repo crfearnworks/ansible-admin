@@ -19,7 +19,6 @@ Network:
     MAC Address: {{ ansible_default_ipv4.macaddress }}
     Gateway: {{ ansible_default_ipv4.gateway }}
     Subnet: {{ ansible_default_ipv4.netmask }}
-    DNS Domain: {{ ansible_dns.nameservers }}
 
 Security:
     FIPS: {{ ansible_fips }}
