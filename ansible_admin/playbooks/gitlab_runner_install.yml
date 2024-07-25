@@ -1,0 +1,8 @@
+---
+- name: Install Gitlab Runner
+  hosts: Debian
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - gitlab_runner_install
