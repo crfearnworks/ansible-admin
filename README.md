@@ -18,8 +18,10 @@ ansible-playbook ./playbooks/<yml file>
 - `debian_hosts.yml`: Sorts through hosts.ini file and creates a group for Debian systems.
 - `speedtest.yml`: Runs a speedtest on the local machine and saves the report in the artifacts folder.
 - `debian_upgrades.yml`: Updates the targeted system(s) and saves a report with an indication if the server must be rebooted.
-- `docker_install`: Adds the Docker repo to apt and installs the Docker Engine
-- `gitlab_runner_install`: Adds the Gitlab repo to apt and installs Gitlab Runner at the system level. It does not register the runner.
+- `docker_install.yml`: Adds the Docker repo to apt and installs the Docker Engine.
+- `gitlab_runner_install.yml`: Adds the Gitlab repo to apt and installs Gitlab Runner at the system level. It does not register the runner.
+- `cuda_toolkit.yml`: Installs the keys and drivers for NVIDIA CUDA, and reboots.
+- `cuda_verify.yml`: Verifies the nvcc -V and nvidia-smi outputs and saves as a report.
 
 ## Notes
 The branch names are going in order on the Chrono Trigger soundtrack. Because you need to have a little fun in your coding.
