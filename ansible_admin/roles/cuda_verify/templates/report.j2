@@ -1,0 +1,11 @@
+NVIDIA CUDA Information Report
+===========================
+Date and Time: {{ ansible_date_time.date }} {{ ansible_date_time.time }}
+System:
+    Hostname: {{ ansible_hostname }}
+
+CUDA Compiler:
+{{ nvcc_version_output }}
+
+NVIDIA-SMI:
+{{ nvidia_smi_output }}
