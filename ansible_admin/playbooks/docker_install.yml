@@ -1,0 +1,8 @@
+---
+- name: Install Docker
+  hosts: Debian
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - docker_install

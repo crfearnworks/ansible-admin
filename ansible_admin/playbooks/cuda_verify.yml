@@ -1,0 +1,8 @@
+---
+- name: Verify NVIDIA CUDA is operational
+  hosts: Debian
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - cuda_verify

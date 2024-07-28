@@ -1,0 +1,7 @@
+---
+dns_domain: example.com # replace with your own
+dns_network: 192.168.1.0 # network address, replace with your own
+dns_reverse_zone: 1.168.192.in-addr.arpa # reverse of dns_network
+dns_forwarders:
+  - 8.8.8.8 # replace with your ISP's DNS server
+  - 8.8.4.4

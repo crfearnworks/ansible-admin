@@ -3,8 +3,9 @@ import ipaddress
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
-from ansible_admin.constants import START_IP, END_IP, OUTPUT_FILE
+from ansible_admin.constants import START_IP, END_IP
 
+OUTPUT_FILE = "./artifacts/hosts.ini"
 
 def ping(ip):
     try:
