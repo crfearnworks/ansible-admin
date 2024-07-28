@@ -2,6 +2,7 @@
 - name: Verify NVIDIA Cuda compiler driver version
   command: nvcc --version
   register: nvcc_version
+  ignore_errors: yes
 
 - name: Format the output of the nvcc command
   set_fact:
