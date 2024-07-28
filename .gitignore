@@ -164,3 +164,4 @@ cython_debug/
 # Custom
 *.ini
 *report.txt
+sensitive_vars.yml
