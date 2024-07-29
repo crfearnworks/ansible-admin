@@ -1,2 +1,3 @@
 repo_user: repo # The name of the repository user
 repo_user_password: password # The password for the repository user
+repo_user_groups: sudo # The groups to which the repository user belongs
