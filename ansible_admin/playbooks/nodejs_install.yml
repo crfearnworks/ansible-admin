@@ -1,0 +1,8 @@
+---
+- name: Install Node.js
+  hosts: Debian
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - nodejs_install
