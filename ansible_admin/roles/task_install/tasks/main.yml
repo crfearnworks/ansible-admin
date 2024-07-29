@@ -30,3 +30,8 @@
 - name: Verify Task installation
   command: task --version
   changed_when: false
+  register: task_version
+
+- name: Display Task version
+  debug:
+    var: task_version.stdout
