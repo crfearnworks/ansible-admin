@@ -1,0 +1,8 @@
+---
+- name: Install Task
+  hosts: Debian
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - task_install
