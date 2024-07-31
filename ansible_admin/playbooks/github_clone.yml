@@ -7,4 +7,4 @@
   roles:
     - github_clone
   vars_files:
-    - ../roles/create_repo_user/vars/github_vars.yml
+    - ../roles/github_clone/vars/github_vars.yml
