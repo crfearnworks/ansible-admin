@@ -7,4 +7,4 @@
   roles:
     - create_repo_user
   vars_files:
-    - "{{ project_root }}/{{ sensitive_vars_file | default('template.sensitive_vars.yml') }}"
+    - ../roles/create_repo_user/vars/sensitive_vars.yml

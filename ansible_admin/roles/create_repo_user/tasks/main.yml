@@ -1,15 +1,12 @@
 ---
 - name: Create a new user
-  user:
+  ansible.builtin.user:
     name: "{{ repo_user }}"
     state: present
     shell: /bin/bash
     password: "{{ repo_user_password | password_hash('sha512') }}"
-    update_password: on_create
-    groups: {{ repo_user_groups }}
-    append: yes
-    createhome: yes
-    home: /home/{{ repo_user }}
-    comment: "Repository user"
-    system: no
-
+    update_password: always
+    groups: "{{ repo_user_groups }}"
+    append: true
+    create_home: true
+    system: false
