@@ -1,0 +1,13 @@
+---
+- name: Ensure git is installed
+  ansible.builtin.apt:
+    name: git
+    state: present
+  become: true
+
+- name: Clone GitHub repository
+  ansible.builtin.git:
+    repo: "https://{{ github_username | urlencode }}:{{ github_token | urlencode }}@github.com/your_username/your_repo.git"
+    version: main
+    dest: /path/to/clone/directory
+    force: yes
