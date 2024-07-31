@@ -166,3 +166,4 @@ cython_debug/
 *report.txt
 sensitive_vars.yml
 github_vars.yml
+service_vars.yml
