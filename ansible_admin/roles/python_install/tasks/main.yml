@@ -14,5 +14,8 @@
 
 - name: Install Python version
   ansible.builtin.apt:
-    name: python{{ python_version }}
+    name: "{{ item }}"
     state: present
+  loop:
+    - python{{ python_version }} 
+    - python{{ python_version }}-venv
