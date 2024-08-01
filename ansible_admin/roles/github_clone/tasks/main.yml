@@ -16,10 +16,7 @@
     owner: "{{ repo_user }}"
     group: "{{ repo_user }}"
     mode: '0755'
-
-- name: Make directory safe for cloning
-  ansible.builtin.shell:
-    cmd: git config --global --add safe.directory "{{ destination_directory }}"
+    recurse: true
 
 - name: Add GitHub to known hosts
   ansible.builtin.shell:
@@ -33,6 +30,11 @@
     group: "{{ repo_user }}"
     mode: '0600'
 
+- name: Make directory safe for cloning
+  ansible.builtin.shell:
+    cmd: git config --global --add safe.directory "{{ destination_directory }}"
+  become: true
+
 - name: Clone GitHub repository
   ansible.builtin.git:
     repo: "{{ github_repo }}"
@@ -40,7 +42,7 @@
     version: main
     dest: "{{ destination_directory }}"
     accept_hostkey: true
-    force: true
+    force: false
 
 - name: Set permissions on cloned directory
   ansible.builtin.file:
