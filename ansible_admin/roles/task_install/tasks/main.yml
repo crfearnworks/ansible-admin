@@ -1,0 +1,37 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Download Task installation script
+  ansible.builtin.get_url:
+    url: https://taskfile.dev/install.sh
+    dest: /tmp/install.sh
+    mode: '0755'
+
+- name: Install Task with Script
+  ansible.builtin.command:
+    cmd: bash /tmp/install.sh -d -b /usr/local/bin
+
+- name: Download completion file
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/go-task/task/main/completion/bash/task.bash
+    dest: /usr/local/bin/task.bash
+    mode: '0644'
+
+- name: Add completion to bashrc file for all users
+  ansible.builtin.lineinfile:
+    path: /etc/bash.bashrc
+    line: 'source /usr/local/bin/task.bash'
+    insertafter: EOF
+    create: yes
+    state: present
+
+- name: Verify Task installation
+  command: task --version
+  changed_when: false
+  register: task_version
+
+- name: Display Task version
+  debug:
+    var: task_version.stdout

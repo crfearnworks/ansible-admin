@@ -1,0 +1,7 @@
+service_name: myservice # replace with the name of your service
+service_working_directory: /path/to/service # replace with the working directory of your service
+service_user: myserviceuser # replace with the user your service runs as
+service_group: myservicegroup # replace with the group your service runs as
+service_executable: /path/to/service/executable # replace with the path to your service executable
+service_stop_command: /path/to/service/stop # replace with the path to your service stop command
+service_after: network.target # replace with the service your service depends on

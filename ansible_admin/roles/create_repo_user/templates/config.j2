@@ -1,0 +1,5 @@
+Host github.com
+    IdentityFile /home/{{ repo_user }}/.ssh/id_rsa
+    StrictHostKeyChecking no
+    UserKnownHostsFile /home/{{ repo_user }}/.ssh/known_hosts
+    User {{ github_user }}

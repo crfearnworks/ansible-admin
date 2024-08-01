@@ -1,0 +1,5 @@
+github_username: your_username
+github_keyfile: /path/to/your/private/key
+github_repo: your_repo
+destination_directory: /path/to/clone/directory
+repo_user: repo # The name of the user created in the create_repo_user role

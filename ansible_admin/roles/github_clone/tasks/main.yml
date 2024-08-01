@@ -1,0 +1,54 @@
+---
+- name: Ensure git is installed
+  ansible.builtin.apt:
+    name: git
+    state: present
+  become: true
+
+- name: Debug information
+  ansible.builtin.debug:
+    msg: "Cloning {{ github_repo }} to {{ destination_directory }}"
+
+- name: Create directory for cloning
+  ansible.builtin.file:
+    path: '{{ destination_directory }}'
+    state: directory
+    owner: "{{ repo_user }}"
+    group: "{{ repo_user }}"
+    mode: '0755'
+    recurse: true
+
+- name: Add GitHub to known hosts
+  ansible.builtin.shell:
+    cmd: ssh-keyscan -t rsa github.com >> /home/{{ repo_user }}/.ssh/known_hosts
+  become: true
+
+- name: Set permissions on known_hosts file
+  ansible.builtin.file:
+    path: /home/{{ repo_user }}/.ssh/known_hosts
+    owner: "{{ repo_user }}"
+    group: "{{ repo_user }}"
+    mode: '0600'
+
+- name: Make directory safe for cloning
+  ansible.builtin.shell:
+    cmd: git config --global --add safe.directory "{{ destination_directory }}"
+  become: true
+
+- name: Clone GitHub repository
+  ansible.builtin.git:
+    repo: "{{ github_repo }}"
+    key_file: "{{ github_keyfile }}"
+    version: main
+    dest: "{{ destination_directory }}"
+    accept_hostkey: true
+    force: false
+
+- name: Set permissions on cloned directory
+  ansible.builtin.file:
+    name: "{{ destination_directory }}"
+    state: directory
+    owner: "{{ repo_user }}"
+    group: "{{ repo_user }}"
+    mode: '0755'
+    recurse: true
