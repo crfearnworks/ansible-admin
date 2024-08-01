@@ -1,0 +1,8 @@
+---
+- name: Update and upgrade localhost without restart
+  hosts: localhost
+  become: true
+  gather_facts: true
+
+  roles:
+    - localhost_upgrades 
