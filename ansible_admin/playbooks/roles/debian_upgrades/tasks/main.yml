@@ -13,7 +13,7 @@
     upgrade: safe
     update_cache: yes
     cache_valid_time: 3600
-  async: '{{ 20*60 }}'  # allow up to 20 minutes before timeout
+  async: '{{ 20 * 60 }}'  # allow up to 20 minutes before timeout
 
 - name: check if services need to be restarted
   # https://www.captainark.net/2016/01/31/debian-updates-with-ansible/
@@ -23,7 +23,7 @@
 
 - name: show services that need to be restarted
   debug:
-    msg: 'Need to restart these services: {{ needrestart.stdout_lines|join("\n") }}'
+    msg: 'Need to restart these services: {{ needrestart.stdout_lines | join("\n") }}'
   when: needrestart.stdout_lines|length > 0
   changed_when: true
 

@@ -5,4 +5,4 @@
   gather_facts: true
 
   roles:
-    - localhost_upgrades 
+    - localhost_upgrades
