@@ -1,10 +1,10 @@
 ---
 - name: Create Debian system service
   hosts: Debian
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - create_debian_service
   vars_files:
-    - ../roles/create_debian_service/vars/service_vars.yml
+    - roles/create_debian_service/vars/service_vars.yml

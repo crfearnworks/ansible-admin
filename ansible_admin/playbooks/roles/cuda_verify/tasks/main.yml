@@ -1,0 +1,23 @@
+---
+- name: Verify NVIDIA Cuda compiler driver version
+  ansible.builtin.command: nvcc --version
+  register: nvcc_version
+  ignore_errors: true
+
+- name: Format the output of the nvcc command
+  ansible.builtin.set_fact:
+    nvcc_version_output: "{{ nvcc_version.stdout_lines | join('\n') }}"
+
+- name: Verify NVIDIA-SMI
+  ansible.builtin.command: nvidia-smi
+  register: nvidia_smi
+
+- name: Format the output of the nvidia-smi command
+  ansible.builtin.set_fact:
+    nvidia_smi_output: "{{ nvidia_smi.stdout_lines | join('\n') }}"
+
+- name: Save hardware information to a report
+  ansible.builtin.template:
+    src: report.j2
+    dest: "{{ playbook_dir }}/../artifacts/{{ inventory_hostname }}_CUDA_report.txt"
+  delegate_to: localhost

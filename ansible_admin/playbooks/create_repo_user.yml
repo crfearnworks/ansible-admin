@@ -1,10 +1,10 @@
 ---
 - name: Create a repository user
   hosts: Debian
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - create_repo_user
   vars_files:
-    - ../roles/create_repo_user/vars/sensitive_vars.yml
+    - roles/create_repo_user/vars/sensitive_vars.yml
