@@ -2,9 +2,9 @@ name: Ansible Test and Lint
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "staging", "main" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "staging", "main" ]
 
 jobs:
   ansible-test-lint:
