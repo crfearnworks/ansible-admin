@@ -6,30 +6,30 @@
 
 - name: Add the NVIDIA CUDA toolkit repository pin
   ansible.builtin.get_url:
-    url: "{{ nvidia_cuda_toolkit_pin }}"
+    url: "{{ cuda_toolkit_pin }}"
     dest: /tmp/cuda-ubuntu2204.pin
 
 - name: Move the NVIDIA CUDA toolkit repository pin
   ansible.builtin.copy:
-    remote_src: yes
+    remote_src: true
     src: /tmp/cuda-ubuntu2204.pin
     dest: /etc/apt/preferences.d/cuda-repository-pin-600
 
 - name: Download the NVIDIA CUDA toolkit repository public key
   ansible.builtin.get_url:
-    url: "{{ nvidia_cuda_toolkit_public_key_src }}"
-    dest: "{{ nvidia_cuda_toolkit_public_key_dest }}"
+    url: "{{ cuda_toolkit_public_key_src }}"
+    dest: "{{ cuda_toolkit_public_key_dest }}"
 
 - name: Unpack the NVIDIA CUDA toolkit repository public key
   ansible.builtin.command:
-    cmd: dpkg -i {{ nvidia_cuda_toolkit_public_key_dest }}
+    cmd: dpkg -i {{ cuda_toolkit_public_key_dest }}
 
 - name: Install the NVIDIA CUDA toolkit repository public key
-  ansible.builtin.shell: sudo cp {{ nvidia_cuda_var_key_path }}/cuda-*-keyring.gpg /usr/share/keyrings/
+  ansible.builtin.shell: sudo cp {{ cuda_toolkit_var_key_path }}/cuda-*-keyring.gpg /usr/share/keyrings/
 
 - name: Update the package list
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Install the NVIDIA CUDA toolkit
   ansible.builtin.apt:
@@ -38,7 +38,7 @@
 
 - name: Install the NVIDIA Driver
   ansible.builtin.apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
   loop:
     - nvidia-driver-555-open

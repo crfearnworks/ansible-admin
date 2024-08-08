@@ -15,18 +15,18 @@
   register: apt_packages
 
 - name: Create fact for packages needing updates
-  set_fact:
+  ansible.builtin.set_fact:
     packages_needing_updates: "{{ apt_packages }}"
     when: apt_packages | length > 0
     cacheable: yes
 
 - name: Save hardware information to a report
-  template:
+  ansible.builtin.template:
     src: report.j2
     dest: /tmp/hardware_report.txt
 
 - name: Fetch the hardware report to the local machine
-  fetch:
+  ansible.builtin.fetch:
     src: /tmp/hardware_report.txt
     dest: "{{ playbook_dir }}/../artifacts/{{ inventory_hostname }}_hardware_report.txt"
-    flat: yes
+    flat: true

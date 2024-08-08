@@ -1,19 +1,19 @@
 ---
 - name: Update apt cache
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Download setup script
   ansible.builtin.get_url:
     url: https://deb.nodesource.com/setup_{{ nodejs_version }}.x  
     dest: /tmp/nodesource_setup.sh
     mode: '0755'
-  become: yes
+  become: true
 
 - name: Run script to enable install of node.js
   ansible.builtin.shell:
     cmd: sudo -E bash /tmp/nodesource_setup.sh
-  become: yes
+  become: true
 
 - name: Install Node.js
   ansible.builtin.apt:
@@ -26,7 +26,7 @@
   register: node_version
 
 - name: Display Node.js version
-  debug:
+  ansible.builtin.debug:
     var: node_version.stdout
 
 - name: Verify npm installation
@@ -35,5 +35,5 @@
   register: npm_version
 
 - name: Display npm version
-  debug:
+  ansible.builtin.debug:
     var: npm_version.stdout

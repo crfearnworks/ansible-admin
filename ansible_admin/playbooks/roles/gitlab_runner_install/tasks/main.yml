@@ -1,7 +1,7 @@
 ---
 - name: Update apt cache
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Add the GitLab Runner repository
   ansible.builtin.command:
@@ -13,7 +13,7 @@
 
 - name: Update apt cache
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Install GitLab Runner
   ansible.builtin.apt:

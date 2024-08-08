@@ -1,7 +1,7 @@
 ---
 - name: Update apt cache
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Add deadsnakes repository
   ansible.builtin.apt_repository:
@@ -10,7 +10,7 @@
 
 - name: Update apt cache
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Install Python version
   ansible.builtin.apt:
