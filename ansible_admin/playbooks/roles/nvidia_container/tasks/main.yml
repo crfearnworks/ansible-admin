@@ -1,0 +1,53 @@
+---
+- name: Install prerequisites
+  ansible.builtin.apt:
+    name: gcc
+    state: present
+
+- name: Check if NVIDIA GPG key exists
+  ansible.builtin.stat:
+    path: "{{ nvidia_container_repo_file }}"
+  register: gpg_key_file
+
+- name: Download NVIDIA Container GPG key
+  ansible.builtin.get_url:
+    url: "{{ nvidia_container_gpg_key_url }}"
+    dest: /tmp/nvidia_gpg_key
+    mode: '0644'
+  register: downloaded_key
+        
+- name: Install NVIDIA GPG key
+  ansible.builtin.shell: "gpg --dearmor < /tmp/nvidia_gpg_key > {{ nvidia_container_gpg_key_path }}"
+  when: downloaded_key is changed and gpg_key_file.stat.exists == false
+
+- name: Check if NVIDIA repository file exists
+  ansible.builtin.stat:
+    path: "{{ nvidia_container_repo_file }}"
+  register: repo_file
+
+- name: Add NVIDIA repository
+  block:
+    - name: Download NVIDIA repository list
+      ansible.builtin.get_url:
+        url: "{{ nvidia_container_repo_url }}"
+        dest: /tmp/nvidia_repo_list
+      register: downloaded_repo
+
+    - name: Modify and install NVIDIA repository list
+      ansible.builtin.template:
+        src: /tmp/nvidia_repo_list
+        dest: "{{ nvidia_container_repo_file }}"
+      vars:
+        gpg_key_path: "{{ nvidia_container_gpg_key_path }}"
+      when: downloaded_repo is changed
+  when: not repo_file.stat.exists
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+  when: gpg_key_file.stat.exists == false or repo_file.stat.exists == false
+
+- name: Install NVIDIA Container Toolkit
+  ansible.builtin.apt:
+    name: nvidia-container-toolkit
+    state: present
