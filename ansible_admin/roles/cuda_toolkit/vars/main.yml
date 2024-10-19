@@ -1,4 +1,0 @@
-nvidia_cuda_toolkit_pin: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
-nvidia_cuda_toolkit_public_key_src: https://developer.download.nvidia.com/compute/cuda/12.5.1/local_installers/cuda-repo-ubuntu2204-12-5-local_12.5.1-555.42.06-1_amd64.deb
-nvidia_cuda_toolkit_public_key_dest: /tmp/cuda-repo-ubuntu2204-12-5-local_12.5.1-555.42.06-1_amd64.deb
-nvidia_cuda_var_key_path: /var/cuda-repo-ubuntu2204-12-5-local

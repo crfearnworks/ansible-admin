@@ -1,0 +1,26 @@
+---
+- name: Set system timezone to UTC
+  community.general.timezone:
+    name: "{{ system_timezone }}"
+
+- name: Install tzdata package
+  ansible.builtin.apt:
+    name: tzdata
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Set TZ environment variable for Central time
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    line: 'TZ="{{ local_timezone }}"'
+    regexp: '^TZ='
+    create: true
+
+- name: Create alias for date command with local timezone
+  ansible.builtin.lineinfile:
+    path: /etc/bash.bashrc
+    line: 'alias localdate="TZ={{ local_timezone }} date"'
+    create: true
+
+- name: Reload shell configuration
+  ansible.builtin.shell: source /etc/bash.bashrc

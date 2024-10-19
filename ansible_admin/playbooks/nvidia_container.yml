@@ -1,0 +1,8 @@
+---
+- name: Install NVIDIA container toolkit
+  hosts: Debian
+  become: true
+  gather_facts: true
+
+  roles:
+    - nvidia_container
