@@ -22,5 +22,3 @@
     line: 'alias localdate="TZ={{ local_timezone }} date"'
     create: true
 
-- name: Reload shell configuration
-  ansible.builtin.shell: source /etc/bash.bashrc
