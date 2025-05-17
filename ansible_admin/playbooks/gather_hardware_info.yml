@@ -1,8 +1,8 @@
 ---
 - name: Gather and save hardware information
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - gather_info

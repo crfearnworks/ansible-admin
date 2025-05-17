@@ -1,8 +1,8 @@
 ---
 - name: Install Python via pyenv
   hosts: Debian
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - python_install

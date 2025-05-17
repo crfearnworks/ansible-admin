@@ -1,9 +1,0 @@
-zone "{{ dns_domain }}" {
-    type master;
-    file "/var/lib/bind/{{ dns_domain }}.zone";
-};
-
-zone "{{ dns_reverse_zone }}" {
-    type master;
-    file "/var/lib/bind/{{ dns_reverse_zone }}.zone";
-};

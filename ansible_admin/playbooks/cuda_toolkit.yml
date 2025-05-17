@@ -1,8 +1,8 @@
 ---
 - name: Install NVIDIA CUDA toolkit
   hosts: Debian
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - cuda_toolkit

@@ -1,10 +1,10 @@
 ---
 - name: Clone GitHub repository
   hosts: Debian
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - github_clone
   vars_files:
-    - ../roles/github_clone/vars/github_vars.yml
+    - roles/github_clone/vars/github_vars.yml

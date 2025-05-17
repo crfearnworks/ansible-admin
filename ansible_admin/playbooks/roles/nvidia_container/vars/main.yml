@@ -1,0 +1,5 @@
+nvidia_container_gpg_key_url: "https://nvidia.github.io/libnvidia-container/gpgkey"
+nvidia_container_gpg_key_path: "/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg"
+nvidia_container_repo_url: 
+  "https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list"
+nvidia_container_repo_file: "/etc/apt/sources.list.d/nvidia-container-toolkit.list"

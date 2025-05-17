@@ -1,0 +1,12 @@
+---
+- name: Set local time zone
+  hosts: Debian
+  become: true
+  gather_facts: true
+
+  roles:
+    - set_local_timezone
+
+  vars:
+    system_timezone: "UTC"
+    local_timezone: "America/Chicago"

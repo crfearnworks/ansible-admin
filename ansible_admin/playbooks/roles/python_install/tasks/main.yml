@@ -1,0 +1,21 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Add deadsnakes repository
+  ansible.builtin.apt_repository:
+    repo: ppa:deadsnakes/ppa
+    state: present
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install Python version
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - python{{ python_version }} 
+    - python{{ python_version }}-venv
